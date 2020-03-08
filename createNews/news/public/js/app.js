@@ -7226,6 +7226,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 var $ = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
@@ -7248,7 +7251,18 @@ $(document).ready(function (e) {
       home: _media_home_png__WEBPACK_IMPORTED_MODULE_2___default.a,
       searchString: null,
       typeOfSearch: null,
-      categorias: ["1", "2", "3"]
+      categorias: [] // categorias: [
+      //     "Crisis Climática y Conservación",
+      //     "Minería",
+      //     "Hidroeléctricas y eólicas",
+      //     "Petróleo, Fracking y Gasoductos",
+      //     "Derechos indígenas",
+      //     "Tierra y Territorio",
+      //     "Agua",
+      //     "Bosques y deforestación",
+      //     "Megaproyectos"
+      // ]
+
     };
   },
   created: function created() {
@@ -7262,6 +7276,13 @@ $(document).ready(function (e) {
     });
   },
   methods: {
+    muestraMenu: function muestraMenu() {
+      console.log();
+      this.$refs.desplegable.classList.add("mouseover");
+    },
+    ocultaMenu: function ocultaMenu() {
+      this.$refs.desplegable.classList.remove("mouseover");
+    },
     search: function search() {
       // console.log(this.searchString);
       if (this.typeOfSearch == null) {
@@ -7290,17 +7311,15 @@ $(document).ready(function (e) {
         name: "nosotros"
       });
     },
-    getCategorias: function getCategorias() {
-      var _this2 = this;
-
-      console.log("getcategoriasss");
-      axios({
-        url: "/categorias"
-      }).then(function (resp) {
-        console.log(resp.data);
-        _this2.categorias = resp.data;
-      });
-    },
+    // getCategorias() {
+    //     console.log("getcategoriasss");
+    //     axios({
+    //         url: "/categorias"
+    //     }).then(resp => {
+    //         console.log(resp.data);
+    //         this.categorias = resp.data;
+    //     });
+    // },
     //publicaciones
     fetch_all_docs: function fetch_all_docs() {
       this.$router.push({
@@ -58149,14 +58168,17 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("li", { staticClass: "drop-down" }, [
-          _c("a", { on: { click: _vm.getCategorias } }, [
+          _c("a", { ref: "desplegable", on: { mouseenter: _vm.muestraMenu } }, [
             _vm._v("TEMAS"),
             _c("i", { staticClass: "ion-arrow-down-b" })
           ]),
           _vm._v(" "),
           _c(
             "ul",
-            { staticClass: "drop-down-menu drop-down-inner" },
+            {
+              staticClass: "drop-down-menu drop-down-inner",
+              on: { mouseleave: _vm.ocultaMenu }
+            },
             _vm._l(_vm.categorias, function(item, index) {
               return _c("li", { key: index }, [
                 _c(
@@ -82801,8 +82823,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\Ceccam\createNewsNuevoModular\createNewsNuevoModular\createNews\news\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\Ceccam\createNewsNuevoModular\createNewsNuevoModular\createNews\news\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\NuevoNews\CeccamNoticias\createNews\news\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\NuevoNews\CeccamNoticias\createNews\news\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

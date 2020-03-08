@@ -110,10 +110,13 @@
             <ul class="main-menu" id="main-menu">
                 <li><a @click="fetch_all_docs">PUBLICACIONES</a></li>
                 <li class="drop-down">
-                    <a @click="getCategorias"
+                    <a @mouseenter="muestraMenu" ref="desplegable"
                         >TEMAS<i class="ion-arrow-down-b"></i
                     ></a>
-                    <ul class="drop-down-menu drop-down-inner">
+                    <ul
+                        @mouseleave="ocultaMenu"
+                        class="drop-down-menu drop-down-inner"
+                    >
                         <li v-for="(item, index) in categorias" :key="index">
                             <a @click="search_theme(item.id)">{{
                                 item.descripcion
@@ -163,7 +166,18 @@ export default {
             home: home,
             searchString: null,
             typeOfSearch: null,
-            categorias: ["1", "2", "3"]
+            categorias: []
+            // categorias: [
+            //     "Crisis Climática y Conservación",
+            //     "Minería",
+            //     "Hidroeléctricas y eólicas",
+            //     "Petróleo, Fracking y Gasoductos",
+            //     "Derechos indígenas",
+            //     "Tierra y Territorio",
+            //     "Agua",
+            //     "Bosques y deforestación",
+            //     "Megaproyectos"
+            // ]
         };
     },
 
@@ -177,6 +191,15 @@ export default {
     },
 
     methods: {
+        muestraMenu() {
+            console.log();
+            this.$refs.desplegable.classList.add("mouseover");
+        },
+
+        ocultaMenu() {
+            this.$refs.desplegable.classList.remove("mouseover");
+        },
+
         search() {
             // console.log(this.searchString);
             if (this.typeOfSearch == null) {
@@ -204,16 +227,16 @@ export default {
             });
         },
 
-        getCategorias() {
-            console.log("getcategoriasss");
+        // getCategorias() {
+        //     console.log("getcategoriasss");
 
-            axios({
-                url: "/categorias"
-            }).then(resp => {
-                console.log(resp.data);
-                this.categorias = resp.data;
-            });
-        },
+        //     axios({
+        //         url: "/categorias"
+        //     }).then(resp => {
+        //         console.log(resp.data);
+        //         this.categorias = resp.data;
+        //     });
+        // },
 
         //publicaciones
         fetch_all_docs() {
