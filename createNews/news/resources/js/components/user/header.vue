@@ -244,20 +244,13 @@ export default {
         },
 
         all_authors() {
-            // this.searchString = "all";
-            //this.$router.push({name: 'document',params: {id}})
             this.$router.push({ name: "todosautores" });
-            // location.replace("/search/" + this.searchString);
         },
         all_documents() {
-            // this.searchString = "allDocuments";
             this.$router.push({ name: "todosdocumentos" });
-            // location.replace("/search/" + this.searchString);
         },
         all_actions() {
-            // this.searchString = "get_all_acciones";
             this.$router.push({ name: "todasacciones" });
-            // location.replace("/search/" + this.searchString);
         },
         display_menu() {
             this.$refs.menubtn.classList.add("show");

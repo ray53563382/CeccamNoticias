@@ -6,25 +6,31 @@
                 v-for="(item, index) in registros"
                 :key="index"
                 class="oflow-hidden pos-relative mb-20 dplay-block"
-                @click="goToDocumentView(item)"
-                style="margin-bottom: 3% !important;"
+                style="margin-bottom: 3% !important; cursor:pointer !important"
             >
                 <div class="wh-100x abs-tlr">
                     <img
                         :src="item.imgdesmostrativa"
                         alt=""
+                        @click="goToDocumentView(item)"
                         style=" height: 100px; width: 100px!important;"
                     />
                 </div>
 
                 <div class="ml-120 min-h-100x">
-                    <h5 class="color-black ">
+                    <h5
+                        @click="goToDocumentView(item)"
+                        style="cursor:auto !important"
+                        class="color-black "
+                    >
                         <b>{{ item.titulo }}</b>
                     </h5>
                     <h6 class="color-lite-black pt-10">
                         Por
                         <span class="color-black"
-                            ><b @click="fetchAuthor(item.autor)"
+                            ><b
+                                style="cursor:pointer !important"
+                                @click="veAlAutorPublicaciones(item.autor)"
                                 >{{ item.autor }},</b
                             ></span
                         >
@@ -87,6 +93,13 @@ export default {
     methods: {
         goToDocumentView(item) {
             location.replace("/documentView/" + item.id);
+        },
+
+        veAlAutorPublicaciones(autor) {
+            this.$router.push({
+                name: "publicacionesautor",
+                params: { autor: autor }
+            });
         }
     }
 };

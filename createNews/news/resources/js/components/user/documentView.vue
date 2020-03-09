@@ -44,17 +44,14 @@
         <div class="container" v-if="registros.length != 0">
             <h4 class="p-title mt-50"><b>Te podría interesar</b></h4>
             <div class="row">
-                <div
-                    class="col-12 col-lg-3 col-md-6 box"
-                    @click="goToDocumentView(registros[0].id)"
-                >
+                <div class="col-12 col-lg-3 col-md-6 box">
                     <img
+                        @click="goToDocumentView(registros[0].id)"
                         :src="registros[0].imgdesmostrativa"
-                        alt=""
-                        style="width: 100%; height: 300px;"
+                        style="width: 100%; height: 300px;cursor:pointer !important"
                     />
                     <h4 class="pt-20">
-                        <a href="#"
+                        <a
                             ><b style="color: black;">{{
                                 registros[0].titulo
                             }}</b></a
@@ -63,7 +60,12 @@
                     <ul style="margin-left: 0px;">
                         <li class="color-lite-black">
                             Autor:
-                            <a href="#" class="color-black"
+                            <a
+                                @click="
+                                    veAlAutorPublicaciones(registros[0].autor)
+                                "
+                                style="cursor:pointer !important"
+                                class="color-black"
                                 ><b>{{ registros[0].autor }},</b></a
                             >
                             <br />
@@ -71,17 +73,14 @@
                         </li>
                     </ul>
                 </div>
-                <div
-                    class="col-12 col-lg-3 col-md-6 box"
-                    @click="goToDocumentView(registros[1].id)"
-                >
+                <div class="col-12 col-lg-3 col-md-6 box">
                     <img
+                        @click="goToDocumentView(registros[1].id)"
                         :src="registros[1].imgdesmostrativa"
-                        alt=""
-                        style="width: 100%; height: 300px;"
+                        style="width: 100%; height: 300px;cursor:pointer !important"
                     />
                     <h4 class="pt-20">
-                        <a href="#"
+                        <a
                             ><b style="color: black;">{{
                                 registros[1].titulo
                             }}</b></a
@@ -90,7 +89,12 @@
                     <ul style="margin-left: 0px;">
                         <li class="color-lite-black">
                             Autor:
-                            <a href="#" class="color-black"
+                            <a
+                                @click="
+                                    veAlAutorPublicaciones(registros[1].autor)
+                                "
+                                class="color-black"
+                                style="cursor:pointer !important"
                                 ><b>{{ registros[1].autor }},</b></a
                             >
                             <br />
@@ -98,17 +102,15 @@
                         </li>
                     </ul>
                 </div>
-                <div
-                    class="col-12 col-lg-3 col-md-6 box"
-                    @click="goToDocumentView(registros[2].id)"
-                >
+                <div class="col-12 col-lg-3 col-md-6 box">
                     <img
+                        @click="goToDocumentView(registros[2].id)"
                         :src="registros[2].imgdesmostrativa"
                         alt=""
-                        style="width: 100%; height: 300px;"
+                        style="width: 100%; height: 300px;cursor:pointer !important"
                     />
                     <h4 class="pt-20">
-                        <a href="#"
+                        <a
                             ><b style="color: black;">{{
                                 registros[2].titulo
                             }}</b></a
@@ -117,7 +119,12 @@
                     <ul style="margin-left: 0px;">
                         <li class="color-lite-black">
                             Autor:
-                            <a href="#" class="color-black"
+                            <a
+                                @click="
+                                    veAlAutorPublicaciones(registros[2].autor)
+                                "
+                                class="color-black"
+                                style="cursor:pointer !important"
                                 ><b>{{ registros[2].autor }},</b></a
                             >
                             <br />
@@ -125,17 +132,15 @@
                         </li>
                     </ul>
                 </div>
-                <div
-                    class="col-12 col-lg-3 col-md-6 box"
-                    @click="goToDocumentView(registros[3].id)"
-                >
+                <div class="col-12 col-lg-3 col-md-6 box">
                     <img
+                        @click="goToDocumentView(registros[3].id)"
                         :src="registros[3].imgdesmostrativa"
                         alt=""
-                        style="width: 100%; height: 300px;"
+                        style="width: 100%; height: 300px;cursor:pointer !important"
                     />
                     <h4 class="pt-20">
-                        <a href="#"
+                        <a
                             ><b style="color: black;">{{
                                 registros[3].titulo
                             }}</b></a
@@ -144,7 +149,12 @@
                     <ul style="margin-left: 0px;">
                         <li class="color-lite-black">
                             Autor:
-                            <a href="#" class="color-black"
+                            <a
+                                @click="
+                                    veAlAutorPublicaciones(registros[3].autor)
+                                "
+                                class="color-black"
+                                style="cursor:pointer !important"
                                 ><b>{{ registros[3].autor }},</b></a
                             >
                             <br />
@@ -212,6 +222,12 @@ export default {
             if (this.$route.path !== path) {
                 this.$router.push(path);
             }
+        },
+        veAlAutorPublicaciones(autor) {
+            this.$router.push({
+                name: "publicacionesautor",
+                params: { autor: autor }
+            });
         }
     },
     created() {

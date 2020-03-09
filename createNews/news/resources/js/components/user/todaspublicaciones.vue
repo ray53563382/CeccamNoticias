@@ -243,4 +243,31 @@ export default {
 .active {
     background-color: rgba(57, 164, 235, 0.747) !important;
 }
+ul {
+    list-style-type: none;
+    width: 100%;
+}
+
+h3 {
+    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+li img {
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+li p {
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+li {
+    padding: 10px;
+    overflow: auto;
+}
+
+li:hover {
+    background: #eee;
+    cursor: pointer;
+}
 </style>

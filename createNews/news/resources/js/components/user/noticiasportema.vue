@@ -27,7 +27,7 @@
                 v-for="(noticia, index) in noticias"
                 :key="index"
                 class="col-12 col-lg-4 col-md-6 box"
-                @click="goToPublicacion(noticia.id)"
+                @click="goToNoticia(noticia.id)"
             >
                 <img
                     :src="noticia.imgdesmostrativa"
@@ -174,9 +174,11 @@ export default {
 
     methods: {
         // FIXME  Que mande a noticia view.
-        goToPublicacion(publicacionid) {
-            const path = "/documentView/" + publicacionid;
-            if (this.$route.path !== path) this.$router.push(path);
+        goToNoticia(noticiaid) {
+            this.$router.push({
+                name: "vistanoticia",
+                params: { id: noticiaid }
+            });
         },
 
         getNoticia(page) {

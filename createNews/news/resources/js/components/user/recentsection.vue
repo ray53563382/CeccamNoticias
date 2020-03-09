@@ -325,7 +325,8 @@
 
                     <a
                         class="dplay-block btn-brdr-primary mt-20 mb-md-50"
-                        href="/search/get_all_docs"
+                        style="cursor:pointer !important"
+                        @click="todasLasPublicaciones"
                         ><b>Ver más publicaciones.</b></a
                     >
                 </div>
@@ -337,7 +338,7 @@
                         <div class="mtb-50">
                             <h4 class="p-title"><b>NOTICIAS</b></h4>
                             <a
-                                @click="goToNewview(noticias[0].id)"
+                                @click="goTonoticia(noticias[0].id)"
                                 class="oflow-hidden pos-relative mb-20 dplay-block hoverevent"
                             >
                                 <div class="wh-100x abs-tlr">
@@ -364,7 +365,7 @@
                             ><!-- oflow-hidden -->
 
                             <a
-                                @click="goToNewview(noticias[1].id)"
+                                @click="goTonoticia(noticias[1].id)"
                                 class="oflow-hidden pos-relative mb-20 dplay-block hoverevent"
                             >
                                 <div class="wh-100x abs-tlr">
@@ -391,7 +392,7 @@
                             ><!-- oflow-hidden -->
 
                             <a
-                                @click="goToNewview(noticias[2].id)"
+                                @click="goTonoticia(noticias[2].id)"
                                 class="oflow-hidden pos-relative mb-20 dplay-block hoverevent"
                             >
                                 <div class="wh-100x abs-tlr">
@@ -418,7 +419,7 @@
                             ><!-- oflow-hidden -->
 
                             <a
-                                @click="goToNewview(noticias[3].id)"
+                                @click="goTonoticia(noticias[3].id)"
                                 class="oflow-hidden pos-relative mb-20 dplay-block hoverevent"
                             >
                                 <div class="wh-100x abs-tlr">
@@ -585,7 +586,7 @@
                                 <b>Multimedia</b>
 
                                 <a
-                                    style="font-size:12px; margin-left: 43%;"
+                                    style="font-size:12px; margin-left: 43%; cursor: pointer !important"
                                     @click="verMultimedia()"
                                     >Ver todo</a
                                 >
@@ -675,6 +676,11 @@
 </template>
 
 <script>
+import Vue from "vue";
+import VueLoading from "vuejs-loading-plugin";
+Vue.use(VueLoading, {
+    text: "Cargando"
+});
 export default {
     name: "recentsection",
 
@@ -689,6 +695,12 @@ export default {
     methods: {
         goToDocumentView(id) {
             this.$router.push({ name: "document", params: { id } });
+        },
+
+        todasLasPublicaciones() {
+            this.$router.push({
+                name: "todaspublicaciones"
+            });
         },
 
         goToAllNews() {
@@ -712,11 +724,15 @@ export default {
                     console.log(error);
                 });
         },
-        goToNewview(itemid) {
-            location.replace("/newView/" + itemid);
+        goTonoticia(noticiaid) {
+            this.$router.push({
+                name: "vistanoticia",
+                params: { id: noticiaid }
+            });
         }
     },
     mounted() {
+        this.$loading(true);
         axios({
             method: "post",
             url: "/recent"
@@ -738,6 +754,7 @@ export default {
                             datos.getUTCFullYear();
                     });
                 });
+                this.$loading(false);
             })
             .catch(Error => console.log(Error));
     },
