@@ -7305,6 +7305,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 var $ = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
@@ -58209,11 +58216,13 @@ var render = function() {
                     },
                     [_vm._v("Sobre nosotros")]
                   )
-                ])
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
               ]
             ),
             _vm._v(" "),
-            _vm._m(0)
+            _vm._m(1)
           ]
         )
       ])
@@ -58224,7 +58233,7 @@ var render = function() {
         _c("img", { attrs: { src: _vm.logo, alt: "Logo" } })
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(2),
       _vm._v(" "),
       _c("div", { staticClass: "src-form myform" }, [
         _c(
@@ -58270,7 +58279,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("div", { staticClass: "input-group-btn search-panel" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "ul",
@@ -58314,7 +58323,7 @@ var render = function() {
                         }
                       },
                       [
-                        _vm._m(3),
+                        _vm._m(4),
                         _vm._v("\n                                Noticias")
                       ]
                     )
@@ -58326,7 +58335,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(4),
+      _vm._m(5),
       _vm._v(" "),
       _c("ul", { staticClass: "main-menu", attrs: { id: "main-menu" } }, [
         _c(
@@ -58414,6 +58423,21 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          staticClass: "pl-0 pl-sm-10",
+          attrs: { href: "http://www.ceccam.org/" }
+        },
+        [_vm._v("CECCAM")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
