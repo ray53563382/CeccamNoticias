@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class publicacionController extends Controller
 {
 
+    public function esAdmin(){
+        $user =  Auth::user();
+        return $user;
+    }
+
 
     public function relevant()
     {

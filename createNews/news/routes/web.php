@@ -114,8 +114,10 @@ Route::resource('/notas', 'NotaController')->middleware('auth');
 Route::resource('/guardarNoticia', 'NoticiasController')->middleware('auth');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/document', 'DocumentController')->middleware('auth');
+
+Route::post('/testauth', 'publicacionController@esAdmin');
 
 
 

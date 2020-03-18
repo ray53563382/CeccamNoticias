@@ -6883,7 +6883,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -7304,6 +7303,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 var $ = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
@@ -7326,18 +7327,9 @@ $(document).ready(function (e) {
       home: _media_home_png__WEBPACK_IMPORTED_MODULE_2___default.a,
       searchString: null,
       typeOfSearch: null,
-      categorias: [] // categorias: [
-      //     "Crisis Climática y Conservación",
-      //     "Minería",
-      //     "Hidroeléctricas y eólicas",
-      //     "Petróleo, Fracking y Gasoductos",
-      //     "Derechos indígenas",
-      //     "Tierra y Territorio",
-      //     "Agua",
-      //     "Bosques y deforestación",
-      //     "Megaproyectos"
-      // ]
-
+      categorias: [],
+      // FIXME Esta variable es de prueba
+      esAdmin: null
     };
   },
   created: function created() {
@@ -7346,13 +7338,24 @@ $(document).ready(function (e) {
     axios({
       url: "/categorias"
     }).then(function (resp) {
-      console.log(resp.data);
+      // console.log(resp.data);
       _this.categorias = resp.data;
+      axios({
+        method: "post",
+        url: "/testauth"
+      }).then(function (resp) {
+        if (resp.data.id != null && resp.data.id != " ") {
+          console.log("Auth");
+          _this.esAdmin = true;
+        } else {
+          console.log("No auth");
+          _this.esAdmin = false;
+        }
+      });
     });
   },
   methods: {
     muestraMenu: function muestraMenu() {
-      console.log();
       this.$refs.desplegable.classList.add("mouseover");
     },
     ocultaMenu: function ocultaMenu() {
@@ -7438,6 +7441,16 @@ $(document).ready(function (e) {
     },
     changeString: function changeString(value) {
       value == "noticias" ? this.typeOfSearch = "noticias" : this.typeOfSearch = "publicaciones";
+    },
+    //NOTE Remove this method, testing purpose only.
+    goToAdmin: function goToAdmin() {
+      this.$router.push({
+        name: "adminHome"
+      }); // location.replace("login");
+    },
+    goToLogin: function goToLogin() {
+      // this.$router.push({ name: "adminHome" });
+      location.replace("login");
     }
   }
 });
@@ -57754,7 +57767,7 @@ var render = function() {
                   height: "300px",
                   cursor: "pointer !important"
                 },
-                attrs: { src: _vm.registros[1].imgdesmostrativa, alt: "" },
+                attrs: { src: _vm.registros[1].imgdesmostrativa },
                 on: {
                   click: function($event) {
                     return _vm.goToDocumentView(_vm.registros[1].id)
@@ -58316,6 +58329,36 @@ var render = function() {
       _vm._m(4),
       _vm._v(" "),
       _c("ul", { staticClass: "main-menu", attrs: { id: "main-menu" } }, [
+        _c(
+          "li",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.esAdmin,
+                expression: "esAdmin"
+              }
+            ]
+          },
+          [_c("a", { on: { click: _vm.goToAdmin } }, [_vm._v("Admin")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.esAdmin,
+                expression: "!esAdmin"
+              }
+            ]
+          },
+          [_c("a", { on: { click: _vm.goToLogin } }, [_vm._v("Login")])]
+        ),
+        _vm._v(" "),
         _c("li", [
           _c("a", { on: { click: _vm.fetch_all_docs } }, [
             _vm._v("PUBLICACIONES")
@@ -82806,6 +82849,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_user_pdfView_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/user/pdfView.vue */ "./resources/js/components/user/pdfView.vue");
 /* harmony import */ var _components_user_noticiasportema_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/user/noticiasportema.vue */ "./resources/js/components/user/noticiasportema.vue");
 /* harmony import */ var _components_user_temasnoticiaspublicaciones_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/user/temasnoticiaspublicaciones.vue */ "./resources/js/components/user/temasnoticiaspublicaciones.vue");
+/* harmony import */ var _components_adm_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/adm/ExampleComponent.vue */ "./resources/js/components/adm/ExampleComponent.vue");
+
 
 
 
@@ -82837,6 +82882,10 @@ var routes = [{
   path: "/multimedia",
   name: "multimedia",
   component: _components_user_multimedia_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, {
+  path: "/home",
+  name: "adminHome",
+  component: _components_adm_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_19__["default"]
 }, {
   path: "/documentView/:id",
   component: _components_user_documentView_vue__WEBPACK_IMPORTED_MODULE_5__["default"],

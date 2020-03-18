@@ -17,11 +17,17 @@ import VistaNoticia from "./components/user/newView.vue";
 import Vistapdf from "./components/user/pdfView.vue";
 import Noticiaportema from "./components/user/noticiasportema.vue";
 import Temasnoticiaspublicaciones from "./components/user/temasnoticiaspublicaciones.vue";
+import AdministradorHome from "./components/adm/ExampleComponent.vue";
 
 const routes = [
     { path: "/", name: "home", component: Home },
     { path: "/nosotros", name: "nosotros", component: Nosotros },
     { path: "/multimedia", name: "multimedia", component: Multimedia },
+    {
+        path: "/home",
+        name: "adminHome",
+        component: AdministradorHome
+    },
     {
         path: "/documentView/:id",
         component: Document,

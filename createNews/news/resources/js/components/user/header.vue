@@ -108,6 +108,8 @@
             ></a>
 
             <ul class="main-menu" id="main-menu">
+                <li v-show="esAdmin"><a @click="goToAdmin">Admin</a></li>
+                <li v-show="!esAdmin"><a @click="goToLogin">Login</a></li>
                 <li><a @click="fetch_all_docs">PUBLICACIONES</a></li>
                 <li class="drop-down">
                     <a @mouseenter="muestraMenu" ref="desplegable"
@@ -166,18 +168,9 @@ export default {
             home: home,
             searchString: null,
             typeOfSearch: null,
-            categorias: []
-            // categorias: [
-            //     "Crisis Climática y Conservación",
-            //     "Minería",
-            //     "Hidroeléctricas y eólicas",
-            //     "Petróleo, Fracking y Gasoductos",
-            //     "Derechos indígenas",
-            //     "Tierra y Territorio",
-            //     "Agua",
-            //     "Bosques y deforestación",
-            //     "Megaproyectos"
-            // ]
+            categorias: [],
+            // FIXME Esta variable es de prueba
+            esAdmin: null
         };
     },
 
@@ -185,14 +178,25 @@ export default {
         axios({
             url: "/categorias"
         }).then(resp => {
-            console.log(resp.data);
+            // console.log(resp.data);
             this.categorias = resp.data;
+            axios({
+                method: "post",
+                url: "/testauth"
+            }).then(resp => {
+                if (resp.data.id != null && resp.data.id != " ") {
+                    console.log("Auth");
+                    this.esAdmin = true;
+                } else {
+                    console.log("No auth");
+                    this.esAdmin = false;
+                }
+            });
         });
     },
 
     methods: {
         muestraMenu() {
-            console.log();
             this.$refs.desplegable.classList.add("mouseover");
         },
 
@@ -277,6 +281,16 @@ export default {
             value == "noticias"
                 ? (this.typeOfSearch = "noticias")
                 : (this.typeOfSearch = "publicaciones");
+        },
+
+        //NOTE Remove this method, testing purpose only.
+        goToAdmin() {
+            this.$router.push({ name: "adminHome" });
+            // location.replace("login");
+        },
+        goToLogin() {
+            // this.$router.push({ name: "adminHome" });
+            location.replace("login");
         }
     }
 };
