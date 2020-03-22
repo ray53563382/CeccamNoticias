@@ -49,6 +49,7 @@ class NoticiasController extends Controller
         $noticia->idcategoria = $request->idcategoria;
         $noticia->informacionArt = $request->informacionArt;
         $noticia->imgdesmostrativa = $request->imgdesmostrativa;
+        $noticia->pdf = $request->pdf;
         $noticia->save();
         return $noticia;
     }

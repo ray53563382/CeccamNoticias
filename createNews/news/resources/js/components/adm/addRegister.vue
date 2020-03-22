@@ -111,6 +111,15 @@
                             </div>
                         </div>
 
+                         <div class="row">
+                             <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Agregar PDF</label><br>
+                                    <input type="file" id="pdf" accept="pdf/*" @change="obtenerPdf">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <editor v-model="registro.informacionArt" api-key="no-api-key" initialValue="" :init="{
@@ -265,13 +274,15 @@ export default {
                         this.registro.importancia = "";
                         this.registro.idcategoria = "";
                         this.registro.imgdesmostrativa = "";
-                        this.registro.informacionArt = "";
+                        this.registro.imgdesmostrativa = "";
+                        this.registro.pdf = "";
                         this.$swal(
                             'Articulo guardado!',
                             'Ahora ya puedo visualizarlo en su página web!',
                             'success'
                         )
                         document.getElementById("imgdata").value = "";
+                        document.getElementById("pdf").value = "";
                         this.$loading(false);
 
                     }).catch(error => {
@@ -287,6 +298,13 @@ export default {
             fileReader.readAsDataURL(e.target.files[0]);
             fileReader.onload = (e) => {
                 this.registro.imgdesmostrativa = e.target.result
+            }
+        },
+        obtenerPdf(e) {
+            let fileReader = new FileReader();
+            fileReader.readAsDataURL(e.target.files[0]);
+            fileReader.onload = (e) => {
+                this.registro.pdf = e.target.result
             }
         },
         guardarCategoria() {

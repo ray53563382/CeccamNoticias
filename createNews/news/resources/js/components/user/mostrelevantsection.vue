@@ -233,8 +233,15 @@
 </template>
 
 <script>
+// import Vue from "vue";
+// import VueLoading from "vuejs-loading-plugin";
+// Vue.use(VueLoading, {
+//     text: "Cargando"
+// });
+
 export default {
     name: "mostrelevantsection",
+    
 
     data() {
         return {
@@ -265,9 +272,8 @@ export default {
         }
     },
 
-    created() {
+    mounted() {
         let self = this;
-
         axios({
             method: "post",
             url: "/relevant"
@@ -277,14 +283,10 @@ export default {
                 method: "post",
                 url: "/getSuperRelevantes"
             }).then(resp => {
-                // this.extra = resp.data.slice(6);
                 this.extra = resp.data;
+                self.notesCarousel();
             });
         });
-
-        setInterval(function() {
-            self.notesCarousel();
-        }, 5000);
     }
 };
 </script>

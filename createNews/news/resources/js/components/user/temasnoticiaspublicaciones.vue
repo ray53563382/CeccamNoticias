@@ -38,6 +38,8 @@
 </template>
 
 <script>
+
+
 import Noticiasportema from "./noticiasportema";
 import Publicacionesportema from "./buscapublicaciontema";
 

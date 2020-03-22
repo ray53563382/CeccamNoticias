@@ -60,6 +60,7 @@ class NotaController extends Controller
         $nota->idcategoria = $request->idcategoria;
         $nota->informacionArt = $request->informacionArt;
         $nota->imgdesmostrativa = $request->imgdesmostrativa;
+        $nota->pdf = $request->pdf;
         $nota->save();
         return $nota;
     }

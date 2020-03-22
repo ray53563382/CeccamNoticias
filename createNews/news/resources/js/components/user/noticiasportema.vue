@@ -1,19 +1,4 @@
 <template>
-    <!-- <div class="container"> -->
-    <!-- <div class="row my-lg-3">
-            <div class="col-lg-12">
-                <h2></h2>
-            </div>
-        </div> -->
-
-    <!-- <div v-show="notFound" class="row">
-        <div class="col-lg-12">
-            <h3>
-                No se han encontrado resultados. Intenta con otro término.
-            </h3>
-        </div>
-    </div> -->
-
     <div>
         <div v-show="notFound" class="row">
             <div class="col-lg-12">
@@ -91,6 +76,12 @@
 </template>
 
 <script>
+import Vue from "vue";
+import VueLoading from "vuejs-loading-plugin";
+Vue.use(VueLoading, {
+    text: "Cargando"
+});
+
 export default {
     props: {
         querystring: {
@@ -144,9 +135,8 @@ export default {
         }
     },
 
-    created() {
+    mounted() {
         // Condición para determinar si se busca por tema o por palabras.
-        console.log(typeof this.$route.params.tema);
         if (isNaN(this.$route.params.tema)) {
             console.log("palabras");
             this.urlDeBusqueda = this.buscaNoticiasPorPalabra;
@@ -154,6 +144,9 @@ export default {
             console.log("tema");
             this.urlDeBusqueda = this.buscaNoticiasPorIdTema;
         }
+
+        this.$loading(true);
+
         axios({
             method: "post",
             // url: "/noticiasporpalabras",
@@ -182,6 +175,7 @@ export default {
         },
 
         getNoticia(page) {
+            this.$loading(true);
             axios({
                 method: "post",
                 url: this.urlDeBusqueda,
@@ -196,6 +190,7 @@ export default {
                     this.$loading(false);
                 })
                 .catch(Error => console.log(Error));
+                 this.$loading(false);
         },
 
         changePage(page) {

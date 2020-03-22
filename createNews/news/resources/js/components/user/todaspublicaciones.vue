@@ -108,6 +108,12 @@
 </template>
 
 <script>
+// import Vue from "vue";
+// import VueLoading from "vuejs-loading-plugin";
+// Vue.use(VueLoading, {
+//     text: "Cargando"
+// });
+
 export default {
     props: {
         querystring: {
@@ -158,8 +164,8 @@ export default {
         }
     },
 
-    created() {
-        // this.$loading(true);
+    mounted() {
+         this.$loading(true);
         if (this.$route.params.busqueda) {
             axios({
                 method: "post",
@@ -199,6 +205,8 @@ export default {
         },
 
         getPublicacion(page) {
+            this.$loading(true);
+
             if (this.$route.params.busqueda) {
                 axios({
                     method: "post",
@@ -214,7 +222,11 @@ export default {
                         this.$loading(false);
                     })
                     .catch(Error => console.log(Error));
+                    this.$loading(false);
+
             } else {
+                this.$loading(true);
+
                 axios({
                     method: "post",
                     url: "/todaslaspublicaciones",
@@ -228,8 +240,11 @@ export default {
                         this.$loading(false);
                     })
                     .catch(Error => console.log(Error));
+                    this.$loading(false);
+
             }
         },
+
 
         changePage(page) {
             this.pagination.current_page = page;

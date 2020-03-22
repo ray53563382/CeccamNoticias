@@ -2,22 +2,21 @@
     <!-- <div id="app"> -->
     <div id="app">
         <Header />
+
         <Mostrelevantsection />
         <Recentsection />
         <Footer />
-        <!-- </div>  -->
+    
     </div>
 </template>
 
 <script>
-// Import header component.
 import Header from "./header";
 import Footer from "./footer";
 import Mostrelevantsection from "./mostrelevantsection";
 import Recentsection from "./recentsection";
 import Vue from "vue";
 import axios from "axios";
-// import { bus } from "../media/bus";
 
 export default {
     name: "App",

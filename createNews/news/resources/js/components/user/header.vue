@@ -14,11 +14,8 @@
                             >
                         </li>
                         <li>
-                            <a
-                                href="http://www.ceccam.org/"
-                                class="pl-0 pl-sm-10"
-                                >CECCAM</a
-                            >
+
+                            <a @click="goCeccam">CECCAM</a>
                         </li>
                     </ul>
                     <ul
@@ -47,6 +44,18 @@
                                 ><i class="ion-social-youtube"></i
                             ></a>
                         </li>
+
+                        
+
+                              <li v-show="esAdmin"><a @click="goToAdmin">Admin</a></li>
+                                <li v-show="!esAdmin"><a @click="goToLogin">Login</a></li>
+                            <!-- <a
+                                target="_blank"
+                                href="https://www.youtube.com/channel/UC0WRsxDsAxyG8y_PkcKJA-w"
+                                ><i class="ion-person"></i
+                            >
+                            </a> -->
+                       
                     </ul>
                 </div>
             </div>
@@ -115,8 +124,8 @@
             ></a>
 
             <ul class="main-menu" id="main-menu">
-                <li v-show="esAdmin"><a @click="goToAdmin">Admin</a></li>
-                <li v-show="!esAdmin"><a @click="goToLogin">Login</a></li>
+                <!-- <li v-show="esAdmin"><a @click="goToAdmin">Admin</a></li>
+                <li v-show="!esAdmin"><a @click="goToLogin">Login</a></li> -->
                 <li><a @click="fetch_all_docs">PUBLICACIONES</a></li>
                 <li class="drop-down">
                     <a @mouseenter="muestraMenu" ref="desplegable"
@@ -203,6 +212,10 @@ export default {
     },
 
     methods: {
+
+        goCeccam(){
+            window.location.href = "http://www.ceccam.org/"
+        },
         muestraMenu() {
             this.$refs.desplegable.classList.add("mouseover");
         },

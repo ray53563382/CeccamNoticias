@@ -18,7 +18,7 @@
     <script src="https://kit.fontawesome.com/ee67fb36a1.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
-    <!-- <link href="{{ asset('css/light-bootstrap-dashboard.css') }}" rel="stylesheet" /> -->
+     <link href="{{ asset('css/light-bootstrap-dashboard.css') }}" rel="stylesheet" /> 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('css/demo.css') }}" rel="stylesheet" />
 </head>
